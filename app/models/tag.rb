@@ -9,4 +9,7 @@ class Tag < ActiveRecord::Base
   # 5 	updated_at 	datetime 						No 		None
   ############################# Scema Information ##############################################################
 
+  # Validation
+  validates :name, presence: true, uniqueness: true
+
 end
