@@ -61,6 +61,15 @@ class TagsController < ApplicationController
     end
   end
 
+  def search
+    @tags = []
+    query = (params[:q] || params[:term]).to_s.strip
+    if query.present?
+      @tags = Tag.where('name LIKE ?', "%#{query}%")
+    end
+    render :layout => false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tag

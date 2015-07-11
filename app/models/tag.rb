@@ -13,6 +13,7 @@ class Tag < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   # define association macro's
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
+  has_many :incomes, through: :taggings, source: :taggable, source_type: "Income"
 
 end

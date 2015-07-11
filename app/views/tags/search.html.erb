@@ -1,0 +1,7 @@
+<%= raw @tags.map {|tag| {
+      'id' => tag.id,
+      'label' => "#{tag.name} ##{tag.id}",
+      'value' => tag.name
+      }
+    }.to_json
+%>
