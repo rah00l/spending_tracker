@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150705153526) do
+ActiveRecord::Schema.define(version: 20150711152831) do
+
+  create_table "incomes", force: :cascade do |t|
+    t.date     "date_of_income"
+    t.float    "amount",         limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "taggable_id",   limit: 4
