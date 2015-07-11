@@ -12,4 +12,7 @@ class Tag < ActiveRecord::Base
   # Validation
   validates :name, presence: true, uniqueness: true
 
+  # define association macro's
+  has_many :taggings
+
 end
