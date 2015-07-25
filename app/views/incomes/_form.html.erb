@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :date_of_income %><br>
-    <%= f.date_select :date_of_income %>
+    <%= f.text_field :date_of_income %>
   </div>
   <div class="field">
     <%= f.label "Category" %><br/> 
@@ -28,3 +28,9 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+           $(function () {
+               $('#income_date_of_income').datepicker({ dateFormat: 'dd-mm-yy' });
+           });
+       </script>
