@@ -39,6 +39,18 @@
     </div>
   </div>
 
+  <% accounts = Account.all %>
+  <% unless accounts.blank? %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-xs-8">
+        <%= f.label :account %><br>
+        <%= f.collection_select :account_id, accounts, :id, :name, {prompt: "Select a account"}, {class: "form-control"} %>
+      </div>
+    </div>
+  </div>
+  <% end%>
+
   <%= f.submit class: "btn btn-primary" %>
 
 <% end %>
