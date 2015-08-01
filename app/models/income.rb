@@ -14,6 +14,8 @@ class Income < ActiveRecord::Base
   has_many :tags, :through => :taggings
   has_many :taggings, :as => :taggable
 
+  belongs_to :account
+
   # defination of instance methods
   def tag_name
     tags.map(&:name).join(", ")
