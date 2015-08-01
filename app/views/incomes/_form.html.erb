@@ -11,26 +11,40 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :date_of_income %><br>
-    <%= f.text_field :date_of_income %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-xs-8">
+        <%= f.label :date_of_income %><br>
+        <%= f.text_field :date_of_income, class: "form-control" %>
+      </div>
+    </div>
   </div>
-  <div class="field">
+
+  <div class="form-group">
+  <div class="row">
+      <div class="col-xs-8">
     <%= f.label "Category" %><br/> 
-    <%= f.text_field :tag_name %>
-    <%= javascript_tag "observeAutocompleteField('income_tag_name', '#{escape_javascript search_tags_path()}')" %>
+    <%= f.text_field :tag_name , class: "form-control" %>
+    <%= javascript_tag "observeAutocompleteField('income_tag_name', '#{escape_javascript search_tags_path()}')"%>
+    </div>
+    </div>
   </div> 
-  <div class="field">
+
+  <div class="form-group">
+  <div class="row">
+      <div class="col-xs-8">
     <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
+    <%= f.text_field :amount, class: "form-control" %>
+    </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
+
 <% end %>
 
 <script type="text/javascript">
-           $(function () {
-               $('#income_date_of_income').datepicker({ dateFormat: 'dd-mm-yy' });
-           });
-       </script>
+  $(function () {
+    $('#income_date_of_income').datepicker({ dateFormat: 'dd-mm-yy' });
+  });
+</script>
