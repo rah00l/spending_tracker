@@ -16,4 +16,6 @@ class Tag < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :incomes, through: :taggings, source: :taggable, source_type: "Income"
 
+  has_many :expenses, through: :taggings, source: :taggable, source_type: "Expense"
+
 end

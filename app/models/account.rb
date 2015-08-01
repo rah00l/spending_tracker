@@ -13,6 +13,7 @@ class Account < ActiveRecord::Base
 
   # defination of association macro's
   has_many :incomes, dependent: :destroy
+  has_many :expenses, dependent: :destroy
 
 
   # Validation
