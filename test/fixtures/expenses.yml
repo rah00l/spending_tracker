@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_of_expense: 2015-08-02
+  amount: 1.5
+  account_id: 1
+
+two:
+  date_of_expense: 2015-08-02
+  amount: 1.5
+  account_id: 1
