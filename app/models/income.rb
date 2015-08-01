@@ -7,12 +7,14 @@ class Income < ActiveRecord::Base
   # 	 3	amount				float				Yes			NULL		 
   # 	 4	created_at			datetime			No			None
   # 	 5	updated_at			datetime			No			None
+  #       account_id      int(11)       Yes NULL  
   ############################# Scema Information ##############################################################
 
-  # define association macro's
+  # defination of association macro's
   has_many :tags, :through => :taggings
   has_many :taggings, :as => :taggable
 
+  # defination of instance methods
   def tag_name
     tags.map(&:name).join(", ")
   end
