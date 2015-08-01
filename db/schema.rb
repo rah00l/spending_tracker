@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711152831) do
+ActiveRecord::Schema.define(version: 20150801190127) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "name",        limit: 255,                  null: false
+    t.text     "description", limit: 65535
+    t.boolean  "status",                    default: true
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
 
   create_table "incomes", force: :cascade do |t|
     t.date     "date_of_income"
     t.float    "amount",         limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "account_id",     limit: 4
   end
 
   create_table "taggings", force: :cascade do |t|
