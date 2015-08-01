@@ -10,6 +10,9 @@ class Income < ActiveRecord::Base
   #       account_id      int(11)       Yes NULL  
   ############################# Scema Information ##############################################################
 
+  # Validation
+  validates :amount, presence: true
+
   # defination of association macro's
   has_many :tags, :through => :taggings
   has_many :taggings, :as => :taggable
