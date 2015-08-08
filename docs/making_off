@@ -12,3 +12,9 @@ rails g scaffold account name:string description:text status:boolean
 rails g scaffold expense date_of_expense:date amount:float account_id:integer
 
 rails g bootstrap:themed expenses -f
+
+-----------------------------------------------------------------------------
+
+rails g scaffold transaction transactable_id:integer transactable_type:string amount:float
+
+belongs_to :transactionable, polymorphic: true
