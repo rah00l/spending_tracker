@@ -19,6 +19,29 @@ class Income < ActiveRecord::Base
 
   belongs_to :account
 
+  has_one :transact, as: :transactable, dependent: :destroy
+
+  after_create :create_transact
+  after_update :update_transact
+  # after_save :harmonize_transact
+
+  def create_transact
+    Transact.create(transactable_id: id, transactable_type: "Income", amount: amount)
+  end
+
+  def update_transact
+    if transact
+        transact.update_attributes(transactable_id: id, transactable_type: "Income",amount: amount)
+    else
+        Transact.create(transactable_id: id, transactable_type: "Income", amount: amount)
+    end
+
+  end
+
+  # def harmonize_transact
+  #   puts "called after_save"
+  # end
+
   # defination of instance methods
   def tag_name
     tags.map(&:name).join(", ")
