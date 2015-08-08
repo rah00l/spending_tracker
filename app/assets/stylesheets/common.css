@@ -10,3 +10,7 @@ input.autocomplete {
 input.autocomplete.ajax-loading {
   background-image: url(loading.gif);
 }
+
+.currency_symbol { font-family:Arial;font-weight:bold; }
+.income_amount { color:green; }
+.expense_amount { color:red; }
