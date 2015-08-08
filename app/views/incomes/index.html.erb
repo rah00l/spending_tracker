@@ -17,7 +17,7 @@
 		<tr>
 			<td><%= link_to income.date_of_income, income_path(income) %></td>
 			<td><%= income.tag_name %></td>
-			<td><%= income.amount %></td>
+			<td><span class="currency_symbol">&#8377</span><%= format_number_to_currency("%.2f" %income.amount) %></td>
 			<td><%=l income.created_at %></td>
 			<td>
 				<%= link_to t('.edit', :default => t("helpers.links.edit")),
