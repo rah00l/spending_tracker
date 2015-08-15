@@ -10,13 +10,20 @@ class Transact < ActiveRecord::Base
 	############################# Scema Information ##############################################################
 
   # defination of association macro's
-	belongs_to :transactable, polymorphic: true 
+	belongs_to :transactable, polymorphic: true
 
-	default_scope { order(updated_at: :desc) }
+	belongs_to :account
 
-	scope :collective_income, -> { where("transactable_type=? and created_at>= ? and created_at<=?",'Income',Time.zone.now.beginning_of_month,Time.zone.now.end_of_month).sum(:amount) } 
+	default_scope { order(created_at: :desc) }
 
-	scope :collective_expense, -> { where("transactable_type=? and created_at>= ? and created_at<=?",'Expense',Time.zone.now.beginning_of_month,Time.zone.now.end_of_month).sum(:amount) } 
+	scope :by_account, ->(selected_account) { where("account_id IN (?)", selected_account) }
+	scope :income, -> { where("transactable_type=?",'Income') }
+	scope :expense, -> { where("transactable_type=?",'Expense') }
+
+	scope :weekly, -> { where("created_at>= ? and created_at<=?",Date.today.beginning_of_week,Date.today.end_of_week) }
+	scope :monthly, -> { where("created_at>= ? and created_at<=?",Date.today.beginning_of_month,Date.today.end_of_month) }
+	scope :yearly, -> { where("created_at>= ? and created_at<=?",Date.today.beginning_of_year,Date.today.end_of_year) }
+
 
 	# def collective_income
 		
