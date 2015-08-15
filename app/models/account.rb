@@ -15,6 +15,8 @@ class Account < ActiveRecord::Base
   has_many :incomes, dependent: :destroy
   has_many :expenses, dependent: :destroy
 
+  has_many :trasacts, dependent: :destroy
+
 
   # Validation
   validates :name, presence: true, uniqueness: true
