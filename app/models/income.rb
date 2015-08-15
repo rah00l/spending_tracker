@@ -26,14 +26,14 @@ class Income < ActiveRecord::Base
   # after_save :harmonize_transact
 
   def create_transact
-    Transact.create(transactable_id: id, transactable_type: "Income", amount: amount)
+    Transact.create(transactable_id: id, transactable_type: "Income", amount: amount, created_at: date_of_income, account_id: account_id)
   end
 
   def update_transact
     if transact
-        transact.update_attributes(transactable_id: id, transactable_type: "Income",amount: amount)
+        transact.update_attributes(transactable_id: id, transactable_type: "Income",amount: amount, created_at: date_of_income, account_id: account_id)
     else
-        Transact.create(transactable_id: id, transactable_type: "Income", amount: amount)
+        Transact.create(transactable_id: id, transactable_type: "Income", amount: amount, created_at: date_of_income, account_id: account_id)
     end
 
   end
