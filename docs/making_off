@@ -18,3 +18,6 @@ rails g bootstrap:themed expenses -f
 rails g scaffold transaction transactable_id:integer transactable_type:string amount:float
 
 belongs_to :transactionable, polymorphic: true
+
+
+http://www.w3bdeveloper.com/how-to/how-to-create-loading-overlay-over-div-for-ajax-call/
