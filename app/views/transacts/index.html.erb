@@ -1,26 +1,23 @@
 <%- model_class = Transact -%>
 <legend>Transactions</legend>
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Show Spending
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Weekly</a></li>
-      <li><a href="#">Monthly</a></li>
-      <li><a href="#">Yearly</a></li>
-    </ul>
-  </div>
+<div class="col-xs-4">
+<%= select_tag(:account_id, options_from_collection_for_select(Account.order("created_at"), "id", "name"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" }) %>
+</div>
 
+<div class="col-xs-4">
+	<%= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: "Monthly"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" })  %>
+</div><br/>
 
+<div class="loadingOverlay">
 
-  <div class="form-group">
-    <%= select_tag "select_spending", options_for_select(['Weekly','Monthly','Yearly'], {:class => "form-control"}) , onchange: "update_transactions_div(this.value)" %>
-  </div>
-  
-  <div class="loadingOverlay"></div>
-  <br/>
-  <legend></legend>
+</div>
 
+<br/>
 
-  <div id="transactionsDiv">
-    <%= render 'transacts', transacts: @transacts %>
-  </div>
+<legend>
+
+</legend>
+
+<div id="transactionsDiv">
+	<%= render 'transacts', transacts: @transacts %>
+</div>
