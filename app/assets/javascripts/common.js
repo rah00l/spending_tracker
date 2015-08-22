@@ -12,17 +12,35 @@ function observeAutocompleteField(fieldId, url, options) {
 	});
 }
 
+// function update_transactions_div(value){
+// 	$('.loadingOverlay').show();
+// 	$.ajax({
+// 		url: "/transacts",
+// 		type: "GET",
+// 		data: {duration: value },
+// 		dataType: "script",
+// 		cache: true,
+// 		success: function(data) {
+// 			$('.loadingOverlay').hide();
+// 		}
+// 	});
+// }
 
-function update_transactions_div(selected_option){
-	$('.loadingOverlay').show();
-	$.ajax({
-		url: "/transacts",
-		type: "GET",
-		data: {"selected_option" : selected_option},
-		dataType: "script",
-		cache: true,
-		success: function(data) {
-			$('.loadingOverlay').hide();
-		}
-	});
+function update_transactions_div(value){
+	if (($("#account_id").val()!=="") && ($("#duration").val()!==""))
+	{
+		$('.loadingOverlay').show();
+		var var_account_id = $("#account_id").val();
+		var var_duration = $("#duration").val();
+		$.ajax({
+			url: "/transacts",
+			type: "GET",
+			data: {account_id: var_account_id, duration: var_duration },
+			dataType: "script",
+			cache: true,
+			success: function(data) {
+				$('.loadingOverlay').hide();
+			}
+		});
+	}
 }
