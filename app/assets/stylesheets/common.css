@@ -24,7 +24,7 @@ input.autocomplete.ajax-loading {
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 )
-                url('ajax-loader5.gif')
+                url('ajax-loader0.gif')
                 50% 50%
                 no-repeat;
 }
