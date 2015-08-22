@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+## Account(id: integer, name: string, description: text, status: boolean, created_at: datetime, updated_at: datetime)
+Account.find_or_create_by(name: "Personal", description: "This is first basic startup account, created during seed data of application",status: true)
