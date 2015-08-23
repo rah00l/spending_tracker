@@ -15,7 +15,7 @@ class Account < ActiveRecord::Base
   has_many :incomes, dependent: :destroy
   has_many :expenses, dependent: :destroy
 
-  has_many :trasacts, dependent: :destroy
+  has_many :transacts, dependent: :destroy
 
 
   # Validation
