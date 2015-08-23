@@ -12,11 +12,16 @@
 
 </div>
 
+<br/><br/>
+
+<legend></legend>
+
+<div id="account-nameDiv" align="center">
+	<%= render "account_info", account_name: @account_name %>
+</div>
 <br/>
+<legend></legend>
 
-<legend>
-
-</legend>
 
 <div id="transactionsDiv">
 	<%= render 'transacts', transacts: @transacts %>

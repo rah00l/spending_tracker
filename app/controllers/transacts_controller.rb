@@ -5,6 +5,7 @@ class TransactsController < ApplicationController
   # GET /transacts.json
   def index
     account_id = params[:account_id].nil? ? Account.first.id : params[:account_id].to_i
+    @account_name = Account.where(id: account_id).pluck(:name)
 
    if params[:duration] == "Weekly"
       @transacts = Transact.weekly.by_account(account_id)
