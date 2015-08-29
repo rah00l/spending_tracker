@@ -1,0 +1,7 @@
+<%= raw @categories.map {|category| {
+      'id' => category.id,
+      'label' => "#{category.name} ##{category.id}",
+      'value' => category.name
+      }
+    }.to_json
+%>
