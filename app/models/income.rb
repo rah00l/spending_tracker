@@ -1,17 +1,18 @@
 class Income < ActiveRecord::Base
 
   ############################# Scema Information ##############################################################
-  # #	Column					Type	Collation	Null		Default		Extra	
-  # 	 1	id					int(11)				No			None		AUTO_INCREMENT	 
-  # 	 2	date_of_income		date				Yes			NULL		 
-  # 	 3	amount				float				Yes			NULL		 
-  # 	 4	created_at			datetime			No			None
-  # 	 5	updated_at			datetime			No			None
-  #       account_id      int(11)       Yes NULL  
+  # # Column          Type  Collation Null    Default   Extra
+  #    1  id          int(11)       No      None    AUTO_INCREMENT
+  #    2  date_of_income    date        Yes     NULL
+  #    3  amount        float       Yes     NULL
+  #    4  created_at      datetime      No      None
+  #    5  updated_at      datetime      No      None
+  #       account_id      int(11)       Yes NULL
+  #    7 category_id      int (11)      Yes NULL
   ############################# Scema Information ##############################################################
 
   # Validation
-  validates :amount, presence: true
+  validates :amount,:category_name,:date_of_income, presence: true
 
   # defination of association macro's
   has_many :tags, :through => :taggings
@@ -20,6 +21,8 @@ class Income < ActiveRecord::Base
   belongs_to :account
 
   has_one :transact, as: :transactable, dependent: :destroy
+
+  belongs_to :category
 
   after_create :create_transact
   after_update :update_transact
@@ -31,11 +34,10 @@ class Income < ActiveRecord::Base
 
   def update_transact
     if transact
-        transact.update_attributes(transactable_id: id, transactable_type: "Income",amount: amount, created_at: date_of_income, account_id: account_id)
+      transact.update_attributes(transactable_id: id, transactable_type: "Income",amount: amount, created_at: date_of_income, account_id: account_id)
     else
-        Transact.create(transactable_id: id, transactable_type: "Income", amount: amount, created_at: date_of_income, account_id: account_id)
+      Transact.create(transactable_id: id, transactable_type: "Income", amount: amount, created_at: date_of_income, account_id: account_id)
     end
-
   end
 
   # def harmonize_transact
@@ -52,4 +54,11 @@ class Income < ActiveRecord::Base
     self.tags << Tag.find_or_create_by(name: name) unless name.blank?
   end
 
+  def category_name
+    category.name if category
+  end
+
+  def category_name=(name)
+    self.category = Category.find_or_create_by(name: name) unless name.blank?
+  end
 end
