@@ -4,7 +4,7 @@ class IncomesController < ApplicationController
   # GET /incomes
   # GET /incomes.json
   def index
-    @incomes = Income.all
+    @incomes = Income.includes(:category)
   end
 
   # GET /incomes/1
@@ -69,6 +69,6 @@ class IncomesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def income_params
-      params.require(:income).permit(:date_of_income, :amount, :tag_name, :account_id)
+      params.require(:income).permit(:date_of_income, :amount, :category_name, :account_id, :category_id)
     end
 end

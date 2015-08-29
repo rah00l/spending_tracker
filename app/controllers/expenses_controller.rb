@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    @expenses = Expense.includes(:category)
   end
 
   # GET /expenses/1
@@ -69,6 +69,6 @@ class ExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expense_params
-      params.require(:expense).permit(:date_of_expense, :amount, :account_id, :tag_name)
+      params.require(:expense).permit(:date_of_expense, :amount, :account_id, :category_id, :category_name)
     end
 end
