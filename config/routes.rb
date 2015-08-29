@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :categories do
+    collection do
+      get 'search'
+    end
+  end
+
   resources :transacts
   resources :expenses
   resources :accounts
