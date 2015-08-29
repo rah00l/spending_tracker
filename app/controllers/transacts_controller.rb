@@ -8,19 +8,19 @@ class TransactsController < ApplicationController
     @account_name = Account.where(id: account_id).pluck(:name)
 
    if params[:duration] == "Weekly"
-      @transacts = Transact.weekly.by_account(account_id)
+      @transacts = Transact.includes(:transactable => :category).weekly.by_account(account_id)
       @income = Transact.income.weekly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.weekly.by_account(account_id).sum(:amount)
     elsif params[:duration] == "Monthly"
-      @transacts = Transact.monthly.by_account(account_id)
+      @transacts = Transact.includes(:transactable => :category).monthly.by_account(account_id)
       @income = Transact.income.monthly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.monthly.by_account(account_id).sum(:amount)
     elsif params[:duration] == "Yearly"
-      @transacts = Transact.yearly.by_account(account_id)
+      @transacts = Transact.includes(:transactable => :category).yearly.by_account(account_id)
       @income = Transact.income.yearly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.yearly.by_account(account_id).sum(:amount)
     else
-      @transacts = Transact.includes(:transactable).monthly.by_account(account_id)
+      @transacts = Transact.includes(:transactable => :category).monthly.by_account(account_id)
       @income = Transact.income.monthly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.monthly.by_account(account_id).sum(:amount)
     end
