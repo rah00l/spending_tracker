@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:date_of_expense) %></th>
-      <th><%= model_class.human_attribute_name(:tag_name) %></th>
+      <th><%= model_class.human_attribute_name(:category_name) %></th>
       <th><%= model_class.human_attribute_name(:amount) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -16,7 +16,7 @@
     <% @expenses.each do |expense| %>
       <tr>
         <td><%= link_to expense.date_of_expense, expense_path(expense) %></td>
-        <td><%= expense.tag_name %></td>
+        <td><%= expense.category.name %></td>
         <td><span class="currency_symbol">&#8377</span><%= format_number_to_currency("%.2f" %expense.amount) %></td>
         <td><%=l expense.created_at %></td>
         <td>
