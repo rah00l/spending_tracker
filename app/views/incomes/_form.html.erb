@@ -24,8 +24,8 @@
   <div class="row">
       <div class="col-xs-8">
     <%= f.label "Category" %><br/> 
-    <%= f.text_field :tag_name , class: "form-control" %>
-    <%= javascript_tag "observeAutocompleteField('income_tag_name', '#{escape_javascript search_tags_path()}')"%>
+    <%= f.text_field :category_name , class: "form-control" %>
+    <%= javascript_tag "observeAutocompleteField('income_category_name', '#{escape_javascript search_categories_path()}')"%>
     </div>
     </div>
   </div> 

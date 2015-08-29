@@ -26,8 +26,8 @@
   <div class="control-group">
     <%= f.label t(:tag), :class => 'control-label' %>
     <div class="controls">
-    <%= f.text_field :tag_name , class: "form-control" %>
-    <%= javascript_tag "observeAutocompleteField('expense_tag_name', '#{escape_javascript search_tags_path()}')"%>
+    <%= f.text_field :category_name , class: "form-control" %>
+    <%= javascript_tag "observeAutocompleteField('expense_category_name', '#{escape_javascript search_categories_path()}')"%>
     </div>
     <%#= error_span(@expense[:date_of_expense]) %>
   </div>
