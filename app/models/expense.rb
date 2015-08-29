@@ -8,10 +8,11 @@ class Expense < ActiveRecord::Base
   #    4  created_at      datetime      No      None
   #    5  updated_at      datetime      No      None
   #       account_id      int(11)       Yes NULL
+  #    7 category_id      int (11)      Yes NULL
   ############################# Scema Information ##############################################################
 
   # Validation
-  validates :amount, presence: true
+  validates :amount,:category_id,:date_of_expense, presence: true
 
   # defination of association macro's
   has_many :tags, :through => :taggings
@@ -20,6 +21,8 @@ class Expense < ActiveRecord::Base
   belongs_to :account
 
   has_one :transact, as: :transactable, dependent: :destroy
+
+  belongs_to :category
 
   after_create :create_transact
   after_update :update_transact
@@ -45,5 +48,13 @@ class Expense < ActiveRecord::Base
   def tag_name=(name)
     self.tags.clear
     self.tags << Tag.find_or_create_by(name: name) unless name.blank?
+  end
+
+  def category_name
+    category.name if category
+  end
+
+  def category_name=(name)
+    self.category = Category.find_or_create_by(name: name) unless name.blank?
   end
 end
