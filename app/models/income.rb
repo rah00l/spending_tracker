@@ -15,9 +15,6 @@ class Income < ActiveRecord::Base
   validates :amount,:category_name,:date_of_income, presence: true
 
   # defination of association macro's
-  has_many :tags, :through => :taggings
-  has_many :taggings, :as => :taggable
-
   belongs_to :account
 
   has_one :transact, as: :transactable, dependent: :destroy
@@ -45,15 +42,6 @@ class Income < ActiveRecord::Base
   # end
 
   # defination of instance methods
-  def tag_name
-    tags.map(&:name).join(", ")
-  end
-
-  def tag_name=(name)
-    self.tags.clear
-    self.tags << Tag.find_or_create_by(name: name) unless name.blank?
-  end
-
   def category_name
     category.name if category
   end
