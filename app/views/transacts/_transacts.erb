@@ -9,7 +9,7 @@
 
     <% transacts.each do |transact| %>
     <tr>
-      <td><span><%= transact.transactable.tags.last.name.capitalize if transact.transactable %></span><br/>
+      <td><span><%= transact.transactable.category.name.capitalize if transact.transactable.category %></span><br/>
         <span style="font-size:xx-small;"><%= transact.created_at.strftime("%A, %d %b %Y") %></span>
       </td>
       <td class="<%= currency_color(transact.transactable_type) %>"><span class="currency_symbol">&#8377;</span><%= raw format_number_to_currency("%.2f" %transact.amount) %></td>
