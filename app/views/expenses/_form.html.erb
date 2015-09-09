@@ -1,60 +1,67 @@
 <%= form_for @expense, :html => { :class => "form-horizontal expense" } do |f| %>
+<% if @expense.errors.any? %>
+<div id="error_expl" class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      <% @expense.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
 
-    <% if @expense.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @expense.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="control-group">
-    <%= f.label :date, :class => 'control-label' %>
-    <div class="controls">
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-8">
+      <%= f.label :date, :class => 'control-label' %>
       <%= f.text_field :date_of_expense, class: "form-control" %>
     </div>
-    <%= error_span(@expense[:date_of_expense]) %>
   </div>
+  <%= error_span(@expense[:date_of_expense]) %>
+</div>
 
-  <div class="control-group">
-    <%= f.label :category, :class => 'control-label' %>
-    <div class="controls">
-    <%= f.text_field :category_name , class: "form-control" %>
-    <%= javascript_tag "observeAutocompleteField('expense_category_name', '#{escape_javascript search_categories_path()}')"%>
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-8">
+      <%= f.label :category, :class => 'control-label' %>
+      <%= f.text_field :category_name , class: "form-control" %>
+      <%= javascript_tag "observeAutocompleteField('expense_category_name', '#{escape_javascript search_categories_path()}')"%>
     </div>
-    <%#= error_span(@expense[:date_of_expense]) %>
   </div>
+  <%= error_span(@expense[:category_id]) %>
+</div>
 
-  <div class="control-group">
-    <%= f.label :amount, :class => 'control-label' %>
-    <div class="controls">
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-8">
+      <%= f.label :amount, :class => 'control-label' %>
       <%= f.text_field :amount, :class => 'form-control' %>
     </div>
-    <%= error_span(@expense[:amount]) %>
   </div>
-  
-  <% accounts = Account.all %>
-  <% unless accounts.blank? %>
-  <div class="control-group">
-    <%= f.label :account_id, :class => 'control-label' %>
-    <div class="controls">
+  <%= error_span(@expense[:amount]) %>
+</div>
+
+<% accounts = Account.all %>
+<% unless accounts.blank? %>
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-8">
+      <%= f.label :account_id, :class => 'control-label' %>
       <%= f.collection_select :account_id, accounts, :id, :name, {prompt: "Select a account"}, {class: "form-control"} %>
     </div>
-    <%= error_span(@expense[:account_id]) %>
   </div>
-  <% end %>
+  <%= error_span(@expense[:account_id]) %>
+</div>
+<% end %>
 
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            expenses_path, :class => 'btn btn-default' %>
+<%= f.submit nil, :class => 'btn btn-primary' %>
+<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+expenses_path, :class => 'btn btn-default' %>
 
 <% end %>
 
