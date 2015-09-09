@@ -14,48 +14,53 @@
 </div>
 <% end %>
 
-  <div class="form-group">
-    <div class="row">
-      <div class="col-xs-8">
-        <%= f.label :date %><br>
-        <%= f.text_field :date_of_income, class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
+<div class="form-group">
   <div class="row">
-      <div class="col-xs-8">
-    <%= f.label "Category" %><br/> 
-    <%= f.text_field :category_name , class: "form-control" %>
-    <%= javascript_tag "observeAutocompleteField('income_category_name', '#{escape_javascript search_categories_path()}')"%>
+    <div class="col-xs-8">
+      <%= f.label :date %><br>
+      <%= f.text_field :date_of_income, class: "form-control" %>
     </div>
-    </div>
-  </div> 
+  </div>
+  <%= error_span(@income[:date_of_income]) %>
+</div>
 
-  <div class="form-group">
+<div class="form-group">
   <div class="row">
-      <div class="col-xs-8">
-    <%= f.label :amount %><br>
-    <%= f.text_field :amount, class: "form-control" %>
-    </div>
-    </div>
-  </div>
-
-  <% accounts = Account.all %>
-  <% unless accounts.blank? %>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-xs-8">
-        <%= f.label :account %><br>
-        <%= f.collection_select :account_id, accounts, :id, :name, {prompt: "Select a account"}, {class: "form-control"} %>
-      </div>
+    <div class="col-xs-8">
+    <%= f.label "Category" %><br/>
+      <%= f.text_field :category_name , class: "form-control" %>
+      <%= javascript_tag "observeAutocompleteField('income_category_name', '#{escape_javascript search_categories_path()}')"%>
     </div>
   </div>
-  <% end%>
+  <%= error_span(@income[:category_id]) %>
+</div>
 
-  <%= f.submit class: "btn btn-primary" %>
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-8">
+      <%= f.label :amount %><br>
+      <%= f.text_field :amount, class: "form-control" %>
+    </div>
+  </div>
+  <%= error_span(@income[:amount]) %>
+</div>
 
+<% accounts = Account.all %>
+<% unless accounts.blank? %>
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-8">
+      <%= f.label :account %><br>
+      <%= f.collection_select :account_id, accounts, :id, :name, {prompt: "Select a account"}, {class: "form-control"} %>
+    </div>
+  </div>
+  <%= error_span(@income[:account_id]) %>
+</div>
+<% end%>
+
+<%= f.submit class: "btn btn-primary" %>
+<%= link_to t('.cancel', default: t("helpers.links.cancel")),
+incomes_path, class: 'btn btn-default' %>
 <% end %>
 
 <script type="text/javascript">
