@@ -14,6 +14,8 @@ class Income < ActiveRecord::Base
   # Validation
   validates :amount,:category_name,:date_of_income, presence: true
 
+  default_scope { order(date_of_income: :desc) }
+
   # defination of association macro's
   belongs_to :account
 

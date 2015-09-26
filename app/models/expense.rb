@@ -17,6 +17,8 @@ class Expense < ActiveRecord::Base
   # defination of association macro's
   belongs_to :account
 
+  default_scope { order(date_of_expense: :desc) }
+
   has_one :transact, as: :transactable, dependent: :destroy
 
   belongs_to :category
