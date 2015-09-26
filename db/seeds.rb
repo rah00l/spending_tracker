@@ -7,9 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ## Account(id: integer, name: string, description: text, status: boolean, created_at: datetime, updated_at: datetime)
+Account.destroy_all
 Account.find_or_create_by(name: "Personal", description: "This is first basic startup account, created during seed data of application",status: true)
 
 ## Category(id: integer, name: string, description: text, created_at: datetime, updated_at: datetime)
-["Cloths", "Eating Out", "Entertainment","Fuel","General","Gifts","Holidays","Kids","Shoppings","Sports","Travel"].each do |category|
+Category.destroy_all
+["Cloths", "Eating Out", "Entertainment","Fuel","General","Gifts","Holidays","Kids","Salary","Shoppings","Sports","Travel"].each do |category|
 	Category.find_or_create_by(name: category)
 end
