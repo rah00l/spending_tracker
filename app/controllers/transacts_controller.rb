@@ -9,7 +9,16 @@ class TransactsController < ApplicationController
     account_id = params[:account_id].nil? ? Account.first.id : params[:account_id].to_i
     @account_name = Account.where(id: account_id).pluck(:name)
 
-   if params[:duration] == "Weekly"
+    @accounts = Account.order("created_at")
+
+    # account_id = @accounts.collect(&:id) if params[:all_accounts].present?
+
+    @selected_duration = params[:duration].blank? ? "Monthly" : params[:duration]
+    ## duration and account_info mainly required for showing selected by user
+    @duration =  get_duration_info(params[:duration])
+    @account = get_account_info
+
+    if params[:duration] == "Weekly"
       @transacts = Transact.includes(:transactable => :category).weekly.by_account(account_id)
       @income = Transact.income.weekly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.weekly.by_account(account_id).sum(:amount)
@@ -93,7 +102,34 @@ class TransactsController < ApplicationController
     params.require(:transact).permit(:transactable_id, :transactable_type, :amount)
   end
 
-  def get_filter_option
+  def get_duration_info(duration)
+    case duration
+    when "Weekly"
+      weekly_duration
+    when "Monthly"
+      monthly_duration
+    when "Yearly"
+      yearly_duration
+    else
+      monthly_duration
+    end
+  end
 
+  def get_account_info
+    account_id = params[:account_id].nil? ? Account.first.id : params[:account_id].to_i
+  end
+
+  def weekly_duration
+    start_date = Date.today.at_beginning_of_week.day
+    end_date = Date.today.at_end_of_week.day
+    return "#{start_date} - #{end_date}"
+  end
+
+  def monthly_duration
+    return Date.today.strftime("%B")
+  end
+
+  def yearly_duration
+    return Date.today.strftime("%Y")
   end
 end
