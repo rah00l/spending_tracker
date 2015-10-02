@@ -1,1 +1,9 @@
-<b><%= account_name.join(",") %></b>
+<div align="left">
+	<%# transact.only(:created_at).map {|p| p.created_at.to_date.beginning_of_month}.uniq.sort.each do |m| -%>
+	  <%#= link_to_unless_current m, :month => m %>&nbsp;
+	<%# end -%>
+</div>
+
+<div align="center">
+	<b><%= account_name.join(",") %></b> - <b><%= duration %></b>
+</div>
