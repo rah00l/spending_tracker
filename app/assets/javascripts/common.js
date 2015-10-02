@@ -44,3 +44,14 @@ function update_transactions_div(value){
 		});
 	}
 }
+
+ //  On select option OnChnage Calls trensacts#index actions with selected values
+function update_transacts(){
+	if (($("#account_id").val()!=="") && ($("#duration").val()!==""))
+	{
+		var var_account_id = $("#account_id").val();
+		var var_duration = $("#duration").val();
+		var url = "transacts?account_id="+var_account_id+"&duration="+var_duration;
+		window.location=url;
+	}
+}

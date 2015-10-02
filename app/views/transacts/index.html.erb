@@ -1,11 +1,17 @@
 <%- model_class = Transact -%>
 <legend>Transactions</legend>
 <div class="col-xs-4">
-<%= select_tag(:account_id, options_from_collection_for_select(Account.order("created_at"), "id", "name"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" }) %>
+<%#= select_tag(:account_id, options_from_collection_for_select(Account.order("created_at"), "id", "name"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" }) %>
+<%# duration = params[:account_id].blank? ? "Monthly" : @account_name %>
+
+<%= select_tag(:account_id, options_from_collection_for_select(Account.order("created_at"), "id", "name", selected: @account), {:class => 'form-control', onchange: "update_transacts()" }) %>
 </div>
 
+<%#= duration =  @duration.blank? ? "Monthly" : @duration %>
+<% duration = params[:duration].blank? ? "Monthly" : params[:duration] %>
 <div class="col-xs-4">
-	<%= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: "Monthly"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" })  %>
+	<%#= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: "Monthly" ), {:class => 'form-control', onchange: "update_transactions_div(this.value)" })  %>
+	<%= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: duration ), {:class => 'form-control', onchange: "update_transacts()" })  %>
 </div><br/>
 
 <div class="loadingOverlay">
@@ -16,8 +22,8 @@
 
 <legend></legend>
 
-<div id="account-nameDiv" align="center">
-	<%= render "account_info", account_name: @account_name %>
+<div id="account-nameDiv">
+	<%= render "account_info", { account_name: @account_name, duration: @duration, transacts: @transacts }  %>
 </div>
 <br/>
 <legend></legend>
