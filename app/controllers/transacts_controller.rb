@@ -4,6 +4,8 @@ class TransactsController < ApplicationController
   # GET /transacts
   # GET /transacts.json
   def index
+    @disply_modal = true
+
     account_id = params[:account_id].nil? ? Account.first.id : params[:account_id].to_i
     @account_name = Account.where(id: account_id).pluck(:name)
 

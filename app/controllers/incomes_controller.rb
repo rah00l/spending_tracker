@@ -4,6 +4,7 @@ class IncomesController < ApplicationController
   # GET /incomes
   # GET /incomes.json
   def index
+    @disply_modal = true
     @incomes = Income.includes(:category)
   end
 
