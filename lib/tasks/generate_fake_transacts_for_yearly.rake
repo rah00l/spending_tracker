@@ -6,7 +6,7 @@ namespace :prep do
     namespace :seed do
       namespace :transacts do
         namespace :yearly do
-          desc "Setup the few 'Fake' transacts entries"
+          desc "Setup the few 'Fake' transacts entries for every month of current year"
           task fakes: ["db:seed"] do
             begin
 
