@@ -23,3 +23,8 @@ belongs_to :transactionable, polymorphic: true
 
 
 http://www.w3bdeveloper.com/how-to/how-to-create-loading-overlay-over-div-for-ajax-call/
+
+Some filtering options link
+-------------------------------
+
+http://papermashup.com/demos/jquery-list-filter/
