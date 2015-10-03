@@ -6,14 +6,16 @@ class TransactsController < ApplicationController
   # GET /transacts
   # GET /transacts.json
   def index
-    @disply_modal = true
-
-    account_id = params[:account_id].nil? ? Account.first.id : params[:account_id].to_i
-    @account_name = Account.where(id: account_id).pluck(:name)
-
-    @accounts = Account.order("created_at")
-
-    # account_id = @accounts.collect(&:id) if params[:all_accounts].present?
+    if params[:account_id] == "All"
+	  # Getting account ids for all accounts
+      account_id = Account.order("created_at").collect(&:id)
+      @account_name = ["All Accounts"]
+      @account = "All"
+    else
+      account_id = get_account_id
+      @account_name = Account.where(id: account_id).pluck(:name)
+      @account = account_id
+    end
 
     ## duration and account_info mainly required for showing selected by user
     @duration_info =  get_duration_info(params[:duration])
