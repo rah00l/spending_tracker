@@ -1,3 +1,5 @@
+include TransactsHelper
+
 class TransactsController < ApplicationController
   before_action :set_transact, only: [:show, :edit, :update, :destroy]
 
@@ -100,33 +102,5 @@ class TransactsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def transact_params
     params.require(:transact).permit(:transactable_id, :transactable_type, :amount)
-  end
-
-  def get_duration_info(duration)
-    case duration
-    when "Weekly"
-      weekly_duration
-    when "Monthly"
-      monthly_duration
-    when "Yearly"
-      yearly_duration
-    else
-      monthly_duration
-    end
-  end
-
-
-  def weekly_duration
-    start_date = Date.today.at_beginning_of_week.day
-    end_date = Date.today.at_end_of_week.day
-    return "#{start_date} - #{end_date}"
-  end
-
-  def monthly_duration
-    return Date.today.strftime("%B")
-  end
-
-  def yearly_duration
-    return Date.today.strftime("%Y")
   end
 end

@@ -8,4 +8,32 @@ module TransactsHelper
   def currency_color(type)
   	type.eql?('Income') ? 'income_amount' : 'expense_amount'
   end
+
+  def get_duration_info(duration)
+    case duration
+    when "Weekly"
+      weekly_duration
+    when "Monthly"
+      monthly_duration
+    when "Yearly"
+      yearly_duration
+    else
+      monthly_duration
+    end
+  end
+
+  def weekly_duration
+    start_date = Date.today.at_beginning_of_week.day
+    end_date = Date.today.at_end_of_week.day
+    return "#{start_date} - #{end_date}"
+  end
+
+  def monthly_duration
+    return Date.today.strftime("%B")
+  end
+
+  def yearly_duration
+    return Date.today.strftime("%Y")
+  end
+
 end
