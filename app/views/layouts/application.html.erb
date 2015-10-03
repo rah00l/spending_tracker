@@ -131,9 +131,9 @@
     <h3>Switch Account</h3>
   </header>
   <div class="modal-body">
-    <p><%= link_to "All Accounts", transacts_path(all_accounts: true) %></p>
+    <p><%= account_link("All",@duration) %></p>
     <% @accounts.each do |account| %>
-    <p><%= account_link(account) %></p>
+    <p><%= account_link(account,@duration) %></p>
     <% end %>
   </div>
   <footer>

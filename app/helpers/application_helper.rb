@@ -1,7 +1,11 @@
 module ApplicationHelper
 
- def account_link(account)
-	return link_to( account.name, transacts_path(account_id: account) )
+  def account_link(account,duration)
+    if account == "All"
+      link_to( "All Account", transacts_path(account_id: account, duration: duration) )
+    else
+      link_to( account.name, transacts_path(account_id: account, duration: duration) )
+    end
   end
 
   def weekly_spendings(account,duration)
