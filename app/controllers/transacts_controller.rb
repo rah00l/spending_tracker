@@ -15,12 +15,10 @@ class TransactsController < ApplicationController
 
     # account_id = @accounts.collect(&:id) if params[:all_accounts].present?
 
-    @selected_duration = params[:duration].blank? ? "Monthly" : params[:duration]
     ## duration and account_info mainly required for showing selected by user
     @duration_info =  get_duration_info(params[:duration])
     @duration = params[:duration].present? ? params[:duration] : "Monthly"
 
-    @account = get_account_info
 
     if params[:duration] == "Weekly"
       @transacts = Transact.includes(:transactable => :category).weekly.by_account(account_id)
