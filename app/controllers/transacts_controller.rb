@@ -115,9 +115,6 @@ class TransactsController < ApplicationController
     end
   end
 
-  def get_account_info
-    account_id = params[:account_id].nil? ? Account.first.id : params[:account_id].to_i
-  end
 
   def weekly_duration
     start_date = Date.today.at_beginning_of_week.day
