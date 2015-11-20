@@ -56,3 +56,10 @@ group :development, :test do
   gem 'spring'
 end
 
+# To enable features such as static asset serving and logging on Heroku please add rails_12factor gem to your Gemfile.
+gem 'rails_12factor', group: :production
+
+gem 'pg'
+
+# Specifying your ruby version at the end of Gemfile.
+ruby "2.0.0"
