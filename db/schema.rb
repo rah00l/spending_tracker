@@ -48,23 +48,6 @@ ActiveRecord::Schema.define(version: 20150909050232) do
     t.text     "note",           limit: 65535
   end
 
-  create_table "taggings", force: :cascade do |t|
-    t.integer  "taggable_id",   limit: 4
-    t.string   "taggable_type", limit: 255
-    t.integer  "tag_id",        limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-
-  create_table "tags", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
   create_table "transacts", force: :cascade do |t|
     t.integer  "transactable_id",   limit: 4
     t.string   "transactable_type", limit: 255
