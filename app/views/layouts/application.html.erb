@@ -38,7 +38,6 @@
 <body>
 
   <body>
-  <% if params[:controller] == "transacts" || params[:controller] == "spendings" %>
     <div class="custom-navbar navbar-default navbar-static-top">
       <div class="container">
         <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -48,14 +47,19 @@
         </button> -->
 
         <div class="extra-navbar">
-          <span class="duration"><b><a class="js-open-modal" href="#" data-modal-id="spendings"> <%= @duration_info %> </a></b></span>
-          <span class="account"><b><a class="js-open-modal" href="#" data-modal-id="switch-account"> <%= @account_name.join(',') %> </a></b></span>
+  <% if user_signed_in? %>
+      <% if params[:controller] == "transacts" || params[:controller] == "spendings" %>
+              <span class="duration"><b><a class="js-open-modal" href="#" data-modal-id="spendings"> <%= @duration_info %> </a></b></span>
+              <span class="account"><b><a class="js-open-modal" href="#" data-modal-id="switch-account"> <%= @account_name.join(',') %> </a></b></span>
+        <% end %>
+        <span class="account"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></span>
+    <% else %>
+      <span><%= link_to "Sign Up", new_user_registration_path %></span>
+      <span class="divider">/</span> <span><%= link_to "Sign In", new_user_session_path %></span>
+    <% end %>
         </div>
-
       </div>
     </div>
-    <% end %>
-
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
