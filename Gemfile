@@ -53,7 +53,7 @@ group :development, :test do
   gem 'spring'
 
   # Use mysql2 as the database for Active Record
-  gem 'mysql2'
+  gem 'mysql2', '~> 0.3.18'
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -64,6 +64,12 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+# For adding user-authentication system used following gem
+gem 'devise'
+
+# Active Admin is a framework for building administration style interfaces
+gem 'activeadmin', github: 'activeadmin'
 
 # Specifying your ruby version at the end of Gemfile.
 ruby "2.0.0"
