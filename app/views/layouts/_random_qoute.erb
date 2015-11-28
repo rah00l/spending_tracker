@@ -1,0 +1,9 @@
+<div class="col-lg-3">
+  <div class="well thought-box sidebar-nav">
+  <blockquote>
+  <% get_random_qoute if @qoute.blank? %>
+    <%= @qoute.message %><br/>
+    <p style="float:right">........<%= @qoute.qoute_by %></p>
+  </blockquote>
+  </div><!--/.well -->
+</div><!--/span-->

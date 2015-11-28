@@ -20,4 +20,8 @@ module ApplicationHelper
     return link_to( "Yearly", transacts_path(account_id: account, duration: duration))
   end
 
+  def get_random_qoute
+     @qoute = Qoute.offset(rand(Qoute.count)).first
+  end
+
 end
