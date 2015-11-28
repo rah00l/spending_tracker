@@ -35,9 +35,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   
 </head>
-<body>
 
-  <body>
+<body id="page-top" class="index">
   <%= render 'layouts/nav' %>
       <div class="row">
         <div class="col-lg-9">
@@ -62,7 +61,7 @@
       </div>
     </div> <!-- /container -->
 
-  </body>
+    <%= render 'layouts/footer' %>
 
 </body>
 </html>
