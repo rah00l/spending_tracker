@@ -21,6 +21,9 @@ rails g scaffold transaction transactable_id:integer transactable_type:string am
 
 belongs_to :transactionable, polymorphic: true
 
+rails g scaffold qoute message:text user_id:integer qoute_by:string
+
+rails g bootstrap:themed qoutes -f
 
 http://www.w3bdeveloper.com/how-to/how-to-create-loading-overlay-over-div-for-ajax-call/
 
