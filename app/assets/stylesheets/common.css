@@ -127,3 +127,13 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+.table {
+  margin-top: 200px;
+  margin-bottom: 550px;
+}
+
+.main_transactions{
+    margin-top: 200px;
+    margin-bottom: 550px;
+}
