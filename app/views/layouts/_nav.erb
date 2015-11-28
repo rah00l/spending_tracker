@@ -1,0 +1,94 @@
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="custom-navbar navbar-default navbar-static-top">
+              <div class="container">
+                <div class="extra-navbar">
+                    <% if params[:controller] == "transacts" || params[:controller] == "spendings" %>
+                            <span class="duration"><b><a class="js-open-modal" href="#" data-modal-id="spendings"> <%= @duration_info %> </a></b></span>
+                            <span class="account"><b><a class="js-open-modal" href="#" data-modal-id="switch-account"> <%= @account_name.join(',') %> </a></b></span>
+                      <% end %>
+                </div>
+
+             <div class="navbar-header page-scroll">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <%= link_to "Balanced Budget", root_path, class: "navbar-brand" %>
+             </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+           
+            <% if user_signed_in? %>
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <li><%= link_to "Income", incomes_path  %>
+                    </li>
+                    <li class="page-scroll">
+                        <li><%= link_to "Expense", expenses_path  %>
+                    </li>
+                    <li class="page-scroll">
+                        <%= link_to "Spending", '/'  %>
+                    </li>
+                    <li class="page-scroll">
+                        <%= link_to "Transactions", transacts_path %>
+                    </li>
+                    <li class="page-scroll">
+                        <%= link_to "Categories", categories_path  %>
+                    </li>
+                    <li class="page-scroll">
+                        <%= link_to "Accounts", accounts_path  %>
+                    </li>
+                    <li class="page-scroll">
+                        <%= link_to "Quotes", qoutes_path  %>
+                    </li>
+                    <li class="page-scroll">
+                        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                    </li>
+            <% else %>
+                    <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                    <li><%= link_to "Sign In", new_user_session_path %></li>
+            <% end %>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div id="spendings" class="modal-box">
+      <header>
+        <a href="#" class="js-modal-close close">×</a>
+        <h3>Spendings</h3>
+      </header>
+      <div class="modal-body">
+        <p><%= weekly_spendings(@account,'Weekly') %></p>
+        <p><%= monthly_spendings(@account,'Monthly') %></p>
+        <p><%= yearly_spendings(@account,'Yearly') %></p>
+      </div>
+      <footer>
+        <a href="#" class="js-modal-close">Close Button</a>
+      </footer>
+    </div>
+
+    <div id="switch-account" class="modal-box">
+      <header>
+        <a href="#" class="js-modal-close close">×</a>
+        <h3>Switch Account</h3>
+      </header>
+      <div class="modal-body">
+        <p><%= account_link("All",@duration) %></p>
+        <% @accounts.each do |account| %>
+        <p><%= account_link(account,@duration) %></p>
+        <% end %>
+      </div>
+      <footer>
+        <a href="#" class="js-modal-close">Close Button</a>
+      </footer>
+    </div>
+
