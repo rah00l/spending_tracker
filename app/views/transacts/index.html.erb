@@ -1,5 +1,5 @@
 <%- model_class = Transact -%>
-<legend>Transactions</legend>
+
 <!-- <div class="col-xs-4"> -->
 <%#= select_tag(:account_id, options_from_collection_for_select(Account.order("created_at"), "id", "name"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" }) %>
 <%#= select_tag(:account_id, options_from_collection_for_select(Account.order("created_at"), "id", "name", selected: @account), {:class => 'form-control'}) %>
@@ -11,19 +11,19 @@
 <!-- </div> -->
 <!-- <br/> -->
 
-<div class="loadingOverlay"></div>
+<!-- <div class="loadingOverlay"></div> -->
 
 <!-- <br/><br/> -->
 
 <!-- <legend></legend> -->
-
+<div class="main_transactions">
+<legend>Transactions</legend>
 <div id="account-nameDiv" align="center">
 	<%= render "account_info", account_name: @account_name, duration: @duration_info %>
 </div>
 <br/>
 <legend></legend>
-
-
 <div id="transactionsDiv">
 	<%= render 'transacts', transacts: @transacts %>
+</div>
 </div>
