@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :qoutes do
+    collection do
+      get 'random_qoute'
+    end
+  end
   ActiveAdmin.routes(self)
   devise_for :users
   resources :categories do
