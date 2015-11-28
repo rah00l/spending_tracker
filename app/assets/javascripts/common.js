@@ -45,6 +45,24 @@ function update_transactions_div(value){
 	}
 }
 
+// Following JS code for refreshing DIV content which have random qoute:
+window.setInterval(pick_random_qoute, 20000);
+function pick_random_qoute() {
+  $.ajax({
+    url: '/qoutes/random_qoute',
+    type: 'get',
+    dataType:'script',
+    data: { },
+    success: function(data){
+      // $("pick_random_qoute").fadeOut(function(){
+      //         $(this).html(data).fadeIn(); // Removed the .hide()
+      //     }); // end fadeout
+    }
+  });
+  return false;
+}
+
+// Following JS code showing modl-box for filtering data on Transactions:
 $(function(){
 
 var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
