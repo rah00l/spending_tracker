@@ -4,8 +4,8 @@
               <div class="container">
                 <div class="extra-navbar">
                     <% if params[:controller] == "transacts" || params[:controller] == "spendings" %>
-                            <span class="duration"><b><a class="js-open-modal" href="#" data-modal-id="spendings"> <%= @duration_info %> </a></b></span>
-                            <span class="account"><b><a class="js-open-modal" href="#" data-modal-id="switch-account"> <%= @account_name.join(',') %> </a></b></span>
+                            <li class="page-scroll duration"><a class="js-open-modal" href="#" data-modal-id="spendings"> <%= @duration_info %></a></li>
+                            <li class="page-scroll account"><a class="js-open-modal" href="#" data-modal-id="switch-account"> <%= @account_name.join(',') %> </a></li>
                       <% end %>
                 </div>
 
