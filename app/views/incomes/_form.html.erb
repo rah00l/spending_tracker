@@ -1,3 +1,4 @@
+<div class="form-div">
 <%= form_for(@income) do |f| %>
 <% if @income.errors.any? %>
 <div id="error_expl" class="panel panel-danger">
@@ -73,6 +74,7 @@
 <%= link_to t('.cancel', default: t("helpers.links.cancel")),
 incomes_path, class: 'btn btn-default' %>
 <% end %>
+</div>
 
 <script type="text/javascript">
   $(function () {
