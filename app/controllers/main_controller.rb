@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-	# layout false
+  before_action :authenticate_user! ,:except => [:index]
   def index
   end
 end
