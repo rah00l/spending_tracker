@@ -141,3 +141,7 @@ blockquote p {
 .form-div{
   margin-top: 200px;
 }
+
+.form-horizontal{
+  margin: 75px;
+}
