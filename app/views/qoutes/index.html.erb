@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:message) %></th>
       <th><%= model_class.human_attribute_name(:qoute_by) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -15,8 +14,7 @@
   <tbody>
     <% @qoutes.each do |qoute| %>
       <tr>
-        <td><%= link_to qoute.id, qoute_path(qoute) %></td>
-        <td><blockquote><%= qoute.message %></blockquote></td>
+        <td><blockquote><%= link_to qoute.message, qoute_path(qoute) %></blockquote></td>
         <td><%= qoute.qoute_by %></td>
         <td><%=l qoute.created_at %></td>
         <td>
