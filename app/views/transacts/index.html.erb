@@ -13,17 +13,28 @@
 
 <!-- <div class="loadingOverlay"></div> -->
 
-<!-- <br/><br/> -->
-
-<!-- <legend></legend> -->
 <div class="main_transactions">
-<legend>Transactions</legend>
-<div id="account-nameDiv" align="center">
-	<%= render "account_info", account_name: @account_name, duration: @duration_info %>
-</div>
-<br/>
-<legend></legend>
-<div id="transactionsDiv">
-	<%= render 'transacts', transacts: @transacts %>
-</div>
+<div class="row">
+	<div class="col-md-8">
+				<!-- <div class="col-md-offset-1 col-md-7"> -->
+			<h2>Transactions</h2>
+			<span class="glyphicon glyphicon-menu-left col-md-offset-1 col-md-1"></span>
+				<div id="account-nameDiv">
+						<%= render "account_info", account_name: @account_name, duration: @duration_info %>
+							<span class="glyphicon glyphicon-menu-right col-md-offset-5 col-md-1"></span>
+				</div>
+		<!-- <div class="row"> -->
+			<div id="transactionsDiv">
+					<%= render 'transacts', transacts: @transacts %>
+			</div>
+		<!-- </div> -->
+		</div>
+		<div class="col-md-4">
+				<div id="pick_random_qoute">
+          <%= render "layouts/random_qoute" %>
+        </div>
+		</div>
+
+	</div>
+
 </div>
