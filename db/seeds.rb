@@ -30,3 +30,18 @@ out.","You only have to do a very few things right in your life so long as you d
 	"The most important investment you can make is in yourself"].each do |qoute|
 		Qoute.find_or_create_by(message: qoute, qoute_by: "Warren Buffett")
 	end
+
+["Early to bed, early to rise, keeps you healthy, wealthy and wise.","A penny saved is a penny earned.",
+	"If you would be wealthy, think of saving as well as getting.",	"If you would know the value of money, go and try to borrow some.",
+	"If you would know the value of money, go and try to borrow some.","Money never made a man happy yet, nor will it. The more a man has, the more he wants. Instead of filling a vacuum, it makes one."
+	].each do |qoute|
+	Qoute.find_or_create_by(message: qoute, qoute_by: "Benjamin Franklin")
+end
+
+Qoute.find_or_create_by(message: "I'd like to live like a poor man - only with lots of money. ",qoute_by: "Pablo Picasso")
+
+["My wallet is like an onion, opening it makes me cry.","They say that love is more important than money, but have you ever tried to pay your bills with a hug? ",
+"The hardest thing to find in life is happiness - money is only hard to find because it gets wasted trying to find happiness.","Men are like bank accounts. Without a lot of money they don't generate a lot of interest."
+].each do |qoute|
+	Qoute.find_or_create_by(message: qoute, qoute_by: "Anonymous")
+end
