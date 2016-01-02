@@ -72,4 +72,4 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 
 # Specifying your ruby version at the end of Gemfile.
-ruby "2.0.0"
+ruby "2.2.1"
