@@ -3,6 +3,7 @@ include TransactsHelper
 class TransactsController < ApplicationController
   before_action :set_transact, only: [:show, :edit, :update, :destroy]
 
+  layout "blogger", only: [:short_notes]
   # GET /transacts
   # GET /transacts.json
   def index
@@ -93,6 +94,9 @@ class TransactsController < ApplicationController
       format.html { redirect_to transacts_url, notice: 'Transact was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def short_notes
   end
 
   private
