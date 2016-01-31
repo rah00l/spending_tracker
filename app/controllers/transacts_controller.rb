@@ -6,11 +6,16 @@ class TransactsController < ApplicationController
   # GET /transacts
   # GET /transacts.json
   def index
-    if params[:account_id] == "All"
-	  # Getting account ids for all accounts
-      account_id = Account.order("created_at").collect(&:id)
-      @account_name = ["All Accounts"]
-      @account = "All"
+    @categories = Category.all
+    @transact_type = Transact
+                     .distinct(:transactable_type)
+                     .pluck(:transactable_type)
+
+    # Getting account ids for all accounts
+    if params[:account_id] == 'All'
+      account_id = Account.order('created_at').collect(&:id)
+      @account_name = ['All Accounts']
+      @account = 'All'
     else
       account_id = get_account_id
       @account_name = Account.where(id: account_id).pluck(:name)
@@ -18,24 +23,35 @@ class TransactsController < ApplicationController
     end
 
     ## duration and account_info mainly required for showing selected by user
-    @duration_info =  get_duration_info(params[:duration])
-    @duration = params[:duration].present? ? params[:duration] : "Monthly"
+    @duration_info = get_duration_info(params[:duration])
+    @duration = params[:duration].present? ? params[:duration] : 'Monthly'
 
-
-    if params[:duration] == "Weekly"
-      @transacts = Transact.includes(:transactable => :category).weekly.by_account(account_id)
+    if params[:duration] == 'Weekly'
+      @transacts = Transact
+                   .includes(transactable: :category)
+                   .weekly
+                   .by_account(account_id)
       @income = Transact.income.weekly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.weekly.by_account(account_id).sum(:amount)
-    elsif params[:duration] == "Monthly"
-      @transacts = Transact.includes(:transactable => :category).monthly.by_account(account_id)
+    elsif params[:duration] == 'Monthly'
+      @transacts = Transact
+                   .includes(transactable: :category)
+                   .monthly
+                   .by_account(account_id)
       @income = Transact.income.monthly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.monthly.by_account(account_id).sum(:amount)
-    elsif params[:duration] == "Yearly"
-      @transacts = Transact.includes(:transactable => :category).yearly.by_account(account_id)
+    elsif params[:duration] == 'Yearly'
+      @transacts = Transact
+                   .includes(transactable: :category)
+                   .yearly
+                   .by_account(account_id)
       @income = Transact.income.yearly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.yearly.by_account(account_id).sum(:amount)
     else
-      @transacts = Transact.includes(:transactable => :category).monthly.by_account(account_id)
+      @transacts = Transact
+                   .includes(transactable: :category)
+                   .monthly
+                   .by_account(account_id)
       @income = Transact.income.monthly.by_account(account_id).sum(:amount)
       @expense = Transact.expense.monthly.by_account(account_id).sum(:amount)
     end
