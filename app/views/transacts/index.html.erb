@@ -37,4 +37,33 @@
 
 	</div>
 
+<div id="spendings" class="modal-box">
+  <header>
+    <a href="#" class="js-modal-close close">×</a>
+    <h3>Spendings</h3>
+  </header>
+  <div class="modal-body">
+    <p><%= weekly_spendings(@account,'Weekly') %></p>
+    <p><%= monthly_spendings(@account,'Monthly') %></p>
+    <p><%= yearly_spendings(@account,'Yearly') %></p>
+  </div>
+  <footer>
+    <a href="#" class="js-modal-close">Close Button</a>
+  </footer>
+</div>
+
+<div id="switch-account" class="modal-box">
+  <header>
+    <a href="#" class="js-modal-close close">×</a>
+    <h3>Switch Account</h3>
+  </header>
+  <div class="modal-body">
+    <p><%= account_link("All",@duration) %></p>
+    <% @accounts.each do |account| %>
+    <p><%= account_link(account,@duration) %></p>
+    <% end %>
+  </div>
+  <footer>
+    <a href="#" class="js-modal-close">Close Button</a>
+  </footer>
 </div>
