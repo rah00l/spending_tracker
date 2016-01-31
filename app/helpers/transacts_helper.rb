@@ -11,11 +11,11 @@ module TransactsHelper
 
   def get_duration_info(duration)
     case duration
-    when "Weekly"
+    when 'Weekly'
       weekly_duration
-    when "Monthly"
+    when 'Monthly'
       monthly_duration
-    when "Yearly"
+    when 'Yearly'
       yearly_duration
     else
       monthly_duration
@@ -29,15 +29,15 @@ module TransactsHelper
   def weekly_duration
     start_date = Date.today.at_beginning_of_week.day
     end_date = Date.today.at_end_of_week.day
-    return "#{start_date} - #{end_date}"
+    "#{start_date} - #{end_date}"
   end
 
   def monthly_duration
-    return Date.today.strftime("%B")
+    Date.today.strftime("%B")
   end
 
   def yearly_duration
-    return Date.today.strftime("%Y")
+    Date.today.strftime("%Y")
   end
 
 end
