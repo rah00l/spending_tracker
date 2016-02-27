@@ -6,36 +6,38 @@
 <!-- </div> -->
 
 <!-- <div class="col-xs-4"> -->
-	<%#= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: "Monthly"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" })  %>
-	<%#= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: @selected_duration ), {:class => 'form-control' })  %>
+<%#= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: "Monthly"), {:class => 'form-control', onchange: "update_transactions_div(this.value)" })  %>
+<%#= select_tag(:duration, options_for_select(['Weekly','Monthly','Yearly'], selected: @selected_duration ), {:class => 'form-control' })  %>
 <!-- </div> -->
 <!-- <br/> -->
 
 <!-- <div class="loadingOverlay"></div> -->
 
 <div class="main_transactions">
-<div class="row">
-	<div class="col-md-8">
-				<!-- <div class="col-md-offset-1 col-md-7"> -->
-			<h2>Transactions</h2>
-			<span class="glyphicon glyphicon-menu-left col-md-offset-1 col-md-1"></span>
-				<div id="account-nameDiv">
-						<%= render "account_info", account_name: @account_name, duration: @duration_info %>
-							<span class="glyphicon glyphicon-menu-right col-md-offset-5 col-md-1"></span>
-				</div>
-		<!-- <div class="row"> -->
-			<div id="transactionsDiv">
-					<%= render 'transacts', transacts: @transacts %>
-			</div>
-		<!-- </div> -->
-		</div>
-		<div class="col-md-4">
-				<div id="pick_random_qoute">
-          <%= render "layouts/random_qoute" %>
-        </div>
-		</div>
+  <div class="row">
+    <div class="col-md-4">
+      <!-- <div id="pick_random_qoute"> -->
+      <%#= render "layouts/random_qoute" %>
+      <!-- </div> -->
+      <%= render 'filter_options' %>
+    </div>
+    <div class="col-md-8">
+      <!-- <div class="col-md-offset-1 col-md-7"> -->
+      <h2>Transactions</h2>
+      <span class="glyphicon glyphicon-menu-left col-md-offset-1 col-md-1"></span>
+      <div id="account-nameDiv">
+        <%= render "account_info", account_name: @account_name, duration: @duration_info %>
+        <span class="glyphicon glyphicon-menu-right col-md-offset-5 col-md-1"></span>
+      </div>
+      <!-- <div class="row"> -->
+      <div id="transactionsDiv">
+        <%= render 'transacts', transacts: @transacts %>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
 
-	</div>
+</div>
 
 <div id="spendings" class="modal-box">
   <header>
