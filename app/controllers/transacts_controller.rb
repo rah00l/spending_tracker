@@ -53,6 +53,28 @@ class TransactsController < ApplicationController
     end
   end
 
+  # GET /transacts
+  # GET /transacts.json
+  def filter
+    account_id = params[:account_id]
+    @filter_options = prepare_filter_options
+    @transacts = Transact.filtered_result @filter_options
+    # @transacts = Transact.filter_data(params)
+    # @transacts = Transact
+    #                .includes(transactable: :category)
+    #                .by_account(account_id)
+      @income = Transact.income.monthly.by_account(account_id).sum(:amount)
+      @expense = Transact.expense.monthly.by_account(account_id).sum(:amount)
+
+     respond_to do |format|
+      format.js
+     end
+  end
+
+  # def prepare_account_id(account_id)
+  #   account_id.blank? ? nil : account_id
+  # end
+
   # GET /transacts/1
   # GET /transacts/1.json
   def show
@@ -108,6 +130,30 @@ class TransactsController < ApplicationController
   end
 
   private
+
+  def prepare_filter_options
+    options = {}.merge!(params)
+    options[:from] = format_date(from: params[:from])
+    options[:to] = format_date(to: params[:to])
+    # options[:file_format] = FileDetail.file_formats
+    # options[:format_version] = FileDetail.format_versions_list(params[:file_format])
+    options
+  end
+
+  # Returns a date object for from or to date range.
+  # Default's to 1 month/Current time if no date specified or invalid parameter.
+  def format_date options
+    type, date = options.first
+    range = {from: :beginning_of_day, to: :end_of_day}[type]
+    begin
+      Date.strptime(date, "%m/%d/%Y").send(range)
+    rescue
+      return 1.month.ago.beginning_of_day if type.eql?(:from)
+      Time.now
+    end
+  end
+
+  helper_method :format_date
 
   # get info required for filter option
   def get_filter_info
