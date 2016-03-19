@@ -1,0 +1,87 @@
+<%= form_tag filter_transacts_path, remote: true, method: :get, class: 'filterForm' do %>
+<div class="well" style="margin-top: 120px;height: auto;">
+  <label>
+    <strong>CATEGORY</strong>
+    <span class="glyphicon glyphicon-menu-down flipcategoryDiv" style='margin-left:150px;'></span>
+  </label>
+
+  <div class='categoryDiv' style="display: none;">
+    <label>All Categories</label>
+    <% Category.all.each do |cat| %>
+    <div class="checkbox">
+      <label><%= check_box_tag "categories[" + cat.name + "]" %>
+        <%= cat.name %></label></br>
+      </div>
+      <% end %>
+    </div>
+
+    <br/>
+
+    <label>
+      <strong>TRANSACT TYPE</strong>
+      <span class="glyphicon glyphicon-menu-down fliptransacttypeDiv" style='margin-left:110px;'></span>
+    </label>
+
+    <div class="transacttypeDiv" style="display: none;">
+      <div class="checkbox">
+        <%= select_tag "transactable_type", options_from_collection_for_select(@transact_type, "transactable_type", 'transactable_type'), :include_blank => 'All' %>
+      </div>
+    </div>
+
+    <label>
+      <strong>ACCOUNT</strong>
+      <span class="glyphicon glyphicon-menu-down flipaccountDiv" style='margin-left:161px;'></span>
+    </label>
+
+    <div class="accountDiv" style="display: none;">
+      <div class="checkbox">
+        <%= select_tag "account_id", options_from_collection_for_select(@accounts, "id", "name"), :include_blank => 'All' %>
+      </div>
+    </div>
+
+    <label>
+      <strong>DATE</strong>
+      <span class="glyphicon glyphicon-menu-down flipdateDiv" style='margin-left:195px;'></span>
+    </label>
+
+    <div class="dateDiv" style="display: none;">
+      <div>
+        <%= check_box_tag 'today', 'today'%>
+        Today
+      </div>
+
+      <div>
+        <%= check_box_tag 'yesterday', 'yesterday'%>
+        Yesterday
+      </div>
+
+      <div>
+        <%= check_box_tag 'this_week', 'this_week'%>
+        This Week
+      </div>
+
+      <div>
+        <%= check_box_tag 'last_week', 'last_week'%>
+        Last Week
+      </div>
+
+      <div>
+        <%= check_box_tag 'this_month', 'this_month'%>
+        This Month
+      </div>
+
+      <div>
+        Custom Date
+        <label>From:
+          <input type="text" class="datepicker" name="from" value="<%= format_date(from: params[:from]).strftime('%m/%d/%Y') %>" /></label>
+          <label>To:
+            <input type="text" class="datepicker" name="to" value="<%= format_date(to: params[:to]).strftime('%m/%d/%Y') %>" /></label>
+          </div>
+
+        </div>
+
+        <p>
+          <%= submit_tag 'Filter', class: 'btn btn-default btn-xs', id: 'filterResult'%>
+        </p>
+      </div>
+      <% end %>
