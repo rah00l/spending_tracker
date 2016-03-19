@@ -93,3 +93,32 @@ $(window).resize(function() {
 $(window).resize();
 
 });
+
+$(document).ready(function(){
+  // Following code for : On filter button submit displays ajax-loader
+  $( ".filterForm" ).submit(function( ) { $('.loadingOverlay').show(); });
+
+  // For date-picker
+  $('.datepicker').datepicker();
+
+  $(".flipcategoryDiv").click(function () {
+    $('.categoryDiv').toggle();
+    $(".flipcategoryDiv").toggleClass("glyphicon-menu-down glyphicon-menu-up");
+  })
+
+  $(".fliptransacttypeDiv").click(function (){
+    $('.transacttypeDiv').toggle();
+    $(".fliptransacttypeDiv").toggleClass("glyphicon-menu-down glyphicon-menu-up");
+  })
+
+  $(".flipdateDiv").click(function (){
+    $('.dateDiv').toggle();
+    $(".flipdateDiv").toggleClass("glyphicon-menu-down glyphicon-menu-up");
+  })
+
+  $(".flipaccountDiv").click(function (){
+    $('.accountDiv').toggle();
+    $(".flipaccountDiv").toggleClass("glyphicon-menu-down glyphicon-menu-up");
+  })
+
+});
