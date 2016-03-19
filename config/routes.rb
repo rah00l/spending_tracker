@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :transacts
+  resources :transacts do
+    collection do
+      get 'filter'
+    end
+  end
   resources :expenses
   resources :accounts
   resources :incomes
