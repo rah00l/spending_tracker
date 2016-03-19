@@ -2,15 +2,11 @@ include TransactsHelper
 
 class TransactsController < ApplicationController
   before_action :set_transact, only: [:show, :edit, :update, :destroy]
+  before_action :get_filter_info, only: :index
 
   # GET /transacts
   # GET /transacts.json
   def index
-    @categories = Category.all
-    @transact_type = Transact
-                     .distinct(:transactable_type)
-                     .pluck(:transactable_type)
-
     # Getting account ids for all accounts
     if params[:account_id] == 'All'
       account_id = Account.order('created_at').collect(&:id)
@@ -112,6 +108,13 @@ class TransactsController < ApplicationController
   end
 
   private
+
+  # get info required for filter option
+  def get_filter_info
+    @categories = Category.all
+    @transact_type = Transact.select("distinct transactable_type")#.map(&:transactable_type)
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_transact
     @transact = Transact.find(params[:id])
