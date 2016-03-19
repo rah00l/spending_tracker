@@ -1,0 +1,2 @@
+$('.loadingOverlay').hide();
+$('#transactionsDiv').html('<%=escape_javascript render("transacts", transacts: @transacts) %>');
