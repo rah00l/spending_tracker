@@ -24,7 +24,7 @@
 
     <div class="transacttypeDiv" style="display: none;">
       <div class="checkbox">
-        <%= select_tag "transactable_type", options_from_collection_for_select(@transact_type, "transactable_type", 'transactable_type'), :include_blank => 'All' %>
+        <%= select_tag "transactable_type", options_for_select(Transact.all.collect {|t| [ t['transactable_type'], t['transactable_type'] ] }.uniq), :include_blank => 'All' %>
       </div>
     </div>
 

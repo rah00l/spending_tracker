@@ -158,7 +158,7 @@ class TransactsController < ApplicationController
   # get info required for filter option
   def get_filter_info
     @categories = Category.all
-    @transact_type = Transact.select("distinct transactable_type")#.map(&:transactable_type)
+    # @transact_type = Transact.select("transactable_type").collect(&:transactable_type).uniq#.map(&:transactable_type)
   end
 
   # Use callbacks to share common setup or constraints between actions.
